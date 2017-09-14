@@ -1,0 +1,34 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: #111;
+  font-family: arial, sans-serif;
+}
+
+body[data-style="dark"] {
+  color: #fff;
+}
+
+li {
+  font-size: 14px;
+  color: inherit;
+  line-height: 1.4;
+  margin: 0 0 3px 20px;
+}
+
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 300px) and (min-width: 250px) {
+  li {
+    font-size: 11px;
+    margin: 0 0 0 20px;
+  }
+}

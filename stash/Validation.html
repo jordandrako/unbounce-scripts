@@ -1,0 +1,50 @@
+<style>
+  .lp-pom-form-field.isValid:after,
+  .lp-pom-form-field.isInvalid:after {
+    font-size: 1.5em;
+    position: absolute;
+    top: 25%;
+    right: 5%;
+    font-weight: bold;
+  }
+  .lp-pom-form-field.isValid:after {
+    content: '\2713';
+    color: #50C050;
+  }
+
+  .lp-pom-form-field.isInvalid:after {
+    content: '\2717';
+    color: #D63333;
+  }
+</style>
+<script>
+  // Here's a comment
+  if (typeof hint !== 'undefined') {
+    $(function() {
+      $("input").on("change focusout", function() {
+        var parent = $(this).closest(".lp-pom-form-field");
+        setTimeout(() => {
+          if ($(this).hasClass("valid")) {
+            parent.addClass("isValid");
+            parent.removeClass("isInvalid");
+          } else if ($(this).hasClass("error")) {
+            parent.addClass("isInvalid");
+            parent.removeClass("isValid");
+          }
+        }, 100);
+      });
+      $("select").on("change focusout", function() {
+        var parent = $(this).closest(".lp-pom-form-field");
+        setTimeout(() => {
+          if ($(this).val() !== "") {
+            parent.addClass("isValid");
+            parent.removeClass("isInvalid");
+          } else if ($(this).val() === "") {
+            parent.addClass("isInvalid");
+            parent.removeClass("isValid");
+          }
+        }, 100);
+      });
+    });
+  }
+</script>

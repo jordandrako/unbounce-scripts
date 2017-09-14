@@ -1,0 +1,51 @@
+<script src="https://s3-us-west-2.amazonaws.com/omg--all/jquery-plugins/intl-tel-input-11.0.0/js/intlTelInput.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#phone_1").intlTelInput({
+      autoPlaceholder: "aggressive",
+      geoIpLookup: function (callback) {
+        $.get("https://ipinfo.io", function () {}, "jsonp").always(function (resp) {
+          var countryCode = (resp && resp.country) ? resp.country : "";
+          callback(countryCode);
+        });
+      },
+      initialCountry: "auto",
+      onlyCountries: []
+    });
+
+    function resizeField() {
+      var fieldWidth = $('#phone_1').outerWidth() + Number($('#phone_1').css('padding-left').replace('px','')) + Number($('#phone_1').css('padding-right').replace('px',''));
+      var fieldTop = Number($('#phone_1').css('top').replace('px',''));
+      var mobileFieldTop = $('#phone_1').offset().top;
+      var fieldHeight =  $('#phone_1').outerHeight();
+      var flagWidth = $('.flag-container').outerWidth();
+      $('#phone_1').css({'width': fieldWidth, 'padding-left': flagWidth})
+      $('.flag-container').css('top', (fieldHeight / 2) + fieldTop);
+      $('.flag-container ul').css('top', (fieldHeight / 2));
+      $('.iti-mobile .intl-tel-input.iti-container').css('top', mobileFieldTop + fieldHeight);
+    };
+
+    resizeField();
+
+    $(window).resize(function() {
+      $('#phone_1').css({'width': '', 'padding-left': ''});
+      resizeField();
+    })
+  });
+</script>
+
+<link rel="stylesheet" href="https://s3-us-west-2.amazonaws.com/omg--all/jquery-plugins/intl-tel-input-11.0.0/css/intlTelInput.css">
+<style>
+  .iti-flag {background-image: url("https://s3-us-west-2.amazonaws.com/omg--all/jquery-plugins/intl-tel-input-11.0.0/img/flags.png");}
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    .iti-flag {background-image: url("https://s3-us-west-2.amazonaws.com/omg--all/jquery-plugins/intl-tel-input-11.0.0/img/flags@2x.png");}
+  }
+
+  .intl-tel-input {
+    position: absolute !important;
+  }
+  .iti-mobile .intl-tel-input.iti-container {
+    position: fixed !important;
+  }
+</style>

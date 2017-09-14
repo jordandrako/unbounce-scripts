@@ -1,0 +1,9 @@
+.DS_Store
+node_modules
+npm-degub.log
+bower_components
+dist
+jquery plugins
+.sass-cache
+.awspublish*
+config.json

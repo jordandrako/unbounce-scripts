@@ -1,0 +1,43 @@
+<script>
+  $(document).ready(function () {
+    // Define redirect time
+    var wait = 5000
+    // Define redirect links
+    var playStore = "";
+    var appStore = "";
+
+    // Find device OS type
+    var isMobile = {
+      Android: function() {
+        return navigator.userAgent.match(/Android/i);
+      },
+      BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+      },
+      iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+      },
+      Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+      },
+      Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+      },
+      any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+      }
+    };
+
+    // Redirect
+    if ( isMobile.Android()) {
+      window.setTimeout(function () {
+        location.href = playStore;
+      }, wait);
+    }
+    else if(isMobile.iOS()) {
+      window.setTimeout(function () {
+        location.href = appStore;
+      }, wait);
+    }
+  });
+</script>

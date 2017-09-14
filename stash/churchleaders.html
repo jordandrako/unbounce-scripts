@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LC Churchleaders Pixel Lead Event</title>
+  <!-- Facebook Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+  fbq('init', '252805098385982');
+  fbq('track', "PageView");</script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=252805098385982&ev=PageView&noscript=1"
+  /></noscript>
+  <script>
+  if (location.search) {
+    var params = {};
+    var pairs = location.search.substring(1).split('&');
+    for(i in pairs){
+        var split = pairs[i].split('=');
+        params[decodeURIComponent(split[0])] = decodeURIComponent(split[1]);
+    }
+    var value;
+    typeof params.value === undefined ? value = 0 : value = parseInt(params.value)
+
+    fbq('track', 'Lead', {
+      value: value,
+      currency: 'USD'
+    });
+  } else {
+    fbq('track', 'Lead', {
+      value: 0,
+      currency: 'USD'
+    });
+  };
+</script>
+  <!-- End Facebook Pixel Code -->
+</head>
+<body>
+
+</body>
+</html>
