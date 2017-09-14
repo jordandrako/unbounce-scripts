@@ -30,11 +30,11 @@ $(() => {
   } else {
     source = 'advert';
   }
-  if ($('#campaign').length) {
-    $('#campaign').val(`${source}-outreach-ebook-${ebook}`);
+  if ($('#Campaign').length) {
+    $('#Campaign').val(`${source}-outreach-ebook-${ebook}`);
   } else {
     $('.lp-pom-form form').append(
-      `<input type="hidden" id="campaign" name="campaign" class="hidden" value="${source}-outreach-ebook-${ebook}"></input>`,
+      `<input type="hidden" id="Campaign" name="Campaign" class="hidden" value="${source}-outreach-ebook-${ebook}"></input>`,
     );
   }
 });
