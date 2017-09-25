@@ -13,7 +13,7 @@ const PRODUCTION = !!yargs.argv.production;
 let CONFIG;
 
 // Build the "dist" folder by running all of the below tasks
-gulp.task('build', gulp.series(clean, babel)); // eslint-disable-line no-use-before-define
+gulp.task('build', gulp.series(clean, babel, minify)); // eslint-disable-line no-use-before-define
 
 // Build js, then watch
 gulp.task('default', gulp.series('build', watch)); // eslint-disable-line no-use-before-define
@@ -28,16 +28,25 @@ function clean(done) {
 }
 
 function babel() {
+  return (
+    gulp
+      .src('src/**/*.js')
+      // .pipe($.if(PRODUCTION, strip()))
+      .pipe($.babel())
+      .pipe(gulp.dest('dist'))
+  );
+}
+
+function minify() {
   return gulp
-    .src('src/**/*.js')
-    .pipe($.if(PRODUCTION, strip()))
-    .pipe($.babel())
+    .src('./src/**/*.json')
+    .pipe($.jsonminify())
     .pipe(gulp.dest('dist'));
 }
 
 // Watch for file changes
 function watch() {
-  gulp.watch('src/**/*.js').on('all', gulp.series(babel));
+  gulp.watch('./src/**/*.js').on('all', gulp.series(babel));
 }
 
 // Ensure creds for AWS are at least there.
@@ -55,7 +64,9 @@ function creds(done) {
 
 // Upload JS to AWS S3
 function aws() {
-  const publisher = CONFIG.aws ? $.awspublish.create(CONFIG.aws) : $.awspublish.create();
+  const publisher = CONFIG.aws
+    ? $.awspublish.create(CONFIG.aws)
+    : $.awspublish.create();
   const headers = {
     // "Cache-Control": "max-age=315360000, no-transform, public"
   };

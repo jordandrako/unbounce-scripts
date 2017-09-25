@@ -1475,6 +1475,14 @@ gulp-if@^2.0.2:
     ternary-stream "^2.0.1"
     through2 "^2.0.1"
 
+gulp-jsonminify@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gulp-jsonminify/-/gulp-jsonminify-1.0.0.tgz#c42b68812c657e6e0a12e93c2aa217b3eb38c70a"
+  dependencies:
+    gulp-util "~3.0.4"
+    jsonminify "~0.2.3"
+    through2 "~0.6.5"
+
 gulp-load-plugins@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/gulp-load-plugins/-/gulp-load-plugins-1.5.0.tgz#4c419f7e5764d9a0e33061bab9618f81b73d4171"
@@ -1528,7 +1536,7 @@ gulp-strip-comments@^2.5.1:
     gulp-util "^3.0.8"
     through2 "^2.0.3"
 
-gulp-util@^3.0.0, gulp-util@^3.0.7, gulp-util@^3.0.8:
+gulp-util@^3.0.0, gulp-util@^3.0.7, gulp-util@^3.0.8, gulp-util@~3.0.4:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/gulp-util/-/gulp-util-3.0.8.tgz#0054e1e744502e27c04c187c3ecc505dd54bbb4f"
   dependencies:
@@ -1870,6 +1878,10 @@ json5@^0.5.1:
 jsonify@~0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
+
+jsonminify@~0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/jsonminify/-/jsonminify-0.2.3.tgz#4b842c8a3fe5d6aa48b2f8f95a1cf9a80c019d8e"
 
 jsprim@^1.2.2:
   version "1.4.1"
@@ -2984,7 +2996,7 @@ through2@2.X, through2@^2.0.0, through2@^2.0.1, through2@^2.0.3, through2@~2.0.0
     readable-stream "^2.1.5"
     xtend "~4.0.1"
 
-through2@^0.6.0:
+through2@^0.6.0, through2@~0.6.5:
   version "0.6.5"
   resolved "https://registry.yarnpkg.com/through2/-/through2-0.6.5.tgz#41ab9c67b29d57209071410e1d7a7a968cd3ad48"
   dependencies:
