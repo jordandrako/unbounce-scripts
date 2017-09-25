@@ -6,8 +6,6 @@ if (location.search) {
     params[key[0]] = key[1] || true;
   });
 }
-// const adSource = `${params.utm_source}-${params.utm_medium}
-// -${params.utm_content}-${params.utm_campaign}-${params.utm_term}`;
 const adSource = `${params.utm_source || 'source'}-${params.utm_medium ||
   'medium'}-${params.utm_content || 'content'}-${params.utm_campaign ||
   'campaign'}-${params.utm_term || 'term'}`;
@@ -18,12 +16,10 @@ campaignInput.type = 'hidden';
 campaignInput.value = adSource;
 
 const form = document.querySelector('.lp-pom-form form');
-if (form) {
-  setInterval(() => {
-    if (!document.querySelector('#campaign_source')) {
-      form.appendChild(campaignInput);
-    } else {
-      document.querySelector('#campaign_source').value = adSource;
-    }
-  }, 500);
-}
+setInterval(() => {
+  if (!document.querySelector('#campaign_source')) {
+    form.appendChild(campaignInput);
+  } else {
+    document.querySelector('#campaign_source').value = adSource;
+  }
+}, 100);
