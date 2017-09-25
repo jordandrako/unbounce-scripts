@@ -143,3 +143,19 @@ $.getJSON(endpoint, (programs) => {
     programDropdown.appendChild(programGroup);
   });
 });
+  // Set time to contact options
+  const timeToContactOptions = {
+    '8AM - 12PM': '1',
+    '12PM - 5PM': '2',
+    '5PM - 9PM': '3',
+  };
+
+  // Append the options
+
+  if ($('#time_to_contact').length) {
+    $.each(timeToContactOptions, (time, optionValue) => {
+      $('#time_to_contact').append(
+        `<option value="${optionValue}">${time}</option>`,
+      );
+    });
+  }
