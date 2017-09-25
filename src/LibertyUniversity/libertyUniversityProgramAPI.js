@@ -111,9 +111,7 @@ function sortBy(field, reverse, primer) {
   };
 }
 
-programOption = document.createElement('option');
-programOption.text = 'Which course are you interested in?';
-programDropdown.appendChild(programOption);
+  // Set and append default options
 programOption = document.createElement('option');
 programOption.value = 'UNDE-BS-D';
 programOption.text = 'Undecided';
