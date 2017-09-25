@@ -1,3 +1,40 @@
+// https://tc39.github.io/ecma262/#sec-array.prototype.includes
+/* eslint-disable */
+if (!Array.prototype.includes) {
+  Object.defineProperty(Array.prototype, 'includes', {
+    value(searchElement, fromIndex) {
+      if (this == null) {
+        throw new TypeError('"this" is null or not defined');
+      }
+
+      const o = Object(this);
+      const len = o.length >>> 0;
+      if (len === 0) {
+        return false;
+      }
+      const n = fromIndex | 0;
+      let k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+
+      function sameValueZero(x, y) {
+        return (
+          x === y ||
+          (typeof x === 'number' &&
+            typeof y === 'number' &&
+            isNaN(x) &&
+            isNaN(y))
+        );
+      }
+      while (k < len) {
+        if (sameValueZero(o[k], searchElement)) {
+          return true;
+        }
+        k++;
+      }
+      return false;
+    },
+  });
+}
+/* eslint-enable */
 const unqualifiedPrograms = [
   'UNDE-BS-D',
   'ACCT-AA-D',
