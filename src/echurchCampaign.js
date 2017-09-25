@@ -1,27 +1,23 @@
 $(() => {
   let ebook;
   let source;
-  if (window.location.href.indexOf('toxic-leadership') > 0) {
-    ebook = 'neverhire';
-  }
-  if (window.location.href.indexOf('engagement-guide') > 0) {
-    ebook = 'churchengagement';
-  }
-  if (window.location.href.indexOf('social-media') > 0) {
-    ebook = 'churchsocialmediaguide';
-  }
-  if (window.location.href.indexOf('persona-worksheet') > 0) {
-    ebook = 'worksheet-persona';
-  }
-  if (window.location.href.indexOf('content-marketing') > 0) {
-    ebook = 'contentmarketingforchurches';
-  }
-  if (window.location.href.indexOf('multisite-killer') > 0) {
-    ebook = 'megachurchkiller';
-  }
-  if (window.location.href.indexOf('social-ads') > 0) {
-    ebook = 'socialadsforchurches';
-  }
+  // Define utm campaign name based on url pathname
+  const campaignUTMValues = {
+    'toxic-leadership': 'neverhire',
+    'engagement-guide': 'churchengagement',
+    'social-media': 'churchsocialmediaguide',
+    'persona-worksheet': 'worksheet-persona',
+    'content-marketing': 'contentmarketingforchurches',
+    'multisite-killer': 'megachurchkiller',
+    'social-ads': 'socialadsforchurches',
+  };
+  // Set ebook utm variable
+  $.each(campaignUTMValues, (urlPath, utmValue) => {
+    if (location.pathname.indexOf(urlPath) >= 0) {
+      ebook = utmValue;
+    }
+  });
+  // Test url parameters for utm ad source and set source variable
   const query = window.location.search.replace('?', '');
   if (/fb/gi.test(query) || /facebook/gi.test(query)) {
     source = 'social-facebook';
@@ -30,11 +26,14 @@ $(() => {
   } else {
     source = 'advert';
   }
-  if ($('#Campaign').length) {
-    $('#Campaign').val(`${source}-outreach-ebook-${ebook}`);
-  } else {
+  // If #Campaign doesn't exit, make it.
+  if (!$('#Campaign').length) {
     $('.lp-pom-form form').append(
       `<input type="hidden" id="Campaign" name="Campaign" class="hidden" value="${source}-outreach-ebook-${ebook}"></input>`,
     );
   }
+  // Apply value on timer
+  setInterval(() => {
+    $('#Campaign').val(`${source}-outreach-ebook-${ebook}`);
+  }, 550);
 });
