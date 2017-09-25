@@ -82,6 +82,7 @@ const unqualifiedPrograms = [
   'PYSA-BS-D',
   'PSCP-BS-D',
   'NURP-BSN-D',
+    'ESHP-MS-D',
 ];
 
 const qualifiedDegreeLevels = ['Associate', 'Bachelor', 'Master', 'Doctorate'];
