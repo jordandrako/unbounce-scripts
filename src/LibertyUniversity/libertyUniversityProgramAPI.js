@@ -90,8 +90,8 @@ $(() => {
   const qualifiedDegreeLevels = [
     'Associate',
     'Bachelor',
-    'Master',
-    'Doctorate',
+    // 'Master',
+    // 'Doctorate',
   ];
   const endpoint =
     'https://s3-us-west-2.amazonaws.com/omg--all/ub-scripts/LibertyUniversity/LU-Programs.json';
