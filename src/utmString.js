@@ -16,10 +16,12 @@ campaignInput.type = 'hidden';
 campaignInput.value = adSource;
 
 const form = document.querySelector('.lp-pom-form form');
-setInterval(() => {
-  if (!document.querySelector('#campaign_source')) {
-    form.appendChild(campaignInput);
-  } else {
-    document.querySelector('#campaign_source').value = adSource;
-  }
-}, 100);
+if (form) {
+  setInterval(() => {
+    if (!document.querySelector('#campaign_source')) {
+      form.appendChild(campaignInput);
+    } else {
+      document.querySelector('#campaign_source').value = adSource;
+    }
+  }, 100);
+}
