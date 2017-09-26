@@ -138,8 +138,7 @@ $(() => {
       programs.forEach((program) => {
         if (
           program.isDeleted === false &&
-          // TODO: If the 'R' campus is what we need to filter?
-          program.Campus !== 'R' &&
+          program.Campus === 'D' &&
           program.DegreeLevel === level &&
           unqualifiedPrograms.includes(program.ProgramCode) === false
         ) {
