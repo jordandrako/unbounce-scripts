@@ -1,10 +1,14 @@
 const gulp = require('gulp');
 const plugins = require('gulp-load-plugins');
-const strip = require('gulp-strip-comments');
 const rimraf = require('rimraf');
 const yargs = require('yargs');
 const fs = require('fs');
 const beep = require('beepbeep');
+const data = require('gulp-data');
+const request = require('request');
+const jeditor = require('gulp-json-editor');
+const source = require('vinyl-source-stream');
+const streamify = require('gulp-streamify');
 
 const $ = plugins();
 
@@ -12,8 +16,11 @@ const PRODUCTION = !!yargs.argv.production;
 
 let CONFIG;
 
+// Get json from sources
+gulp.task('getJson', gulp.series(getLibertyPrograms)); // eslint-disable-line no-use-before-define
+
 // Build the "dist" folder by running all of the below tasks
-gulp.task('build', gulp.series(clean, babel, minify)); // eslint-disable-line no-use-before-define
+gulp.task('build', gulp.series('getJson', clean, babel, json)); // eslint-disable-line no-use-before-define
 
 // Build js, then watch
 gulp.task('default', gulp.series('build', watch)); // eslint-disable-line no-use-before-define
@@ -28,25 +35,22 @@ function clean(done) {
 }
 
 function babel() {
-  return (
-    gulp
-      .src('src/**/*.js')
-      // .pipe($.if(PRODUCTION, strip()))
-      .pipe($.babel())
-      .pipe(gulp.dest('dist'))
-  );
+  return gulp
+    .src('src/**/*.js')
+    .pipe($.babel())
+    .pipe(gulp.dest('dist'));
 }
 
-function minify() {
+function json() {
   return gulp
     .src('./src/**/*.json')
-    .pipe($.jsonminify())
+    .pipe($.if(PRODUCTION, $.jsonminify()))
     .pipe(gulp.dest('dist'));
 }
 
 // Watch for file changes
 function watch() {
-  gulp.watch('./src/**/*.js').on('all', gulp.series(babel));
+  gulp.watch('./src/**/*').on('all', gulp.series(babel, json));
 }
 
 // Ensure creds for AWS are at least there.
@@ -82,4 +86,29 @@ function aws() {
       // print upload updates to console
       .pipe($.awspublish.reporter())
   );
+}
+
+function getLibertyPrograms() {
+  return request({
+    url: 'https://websvc.liberty.edu/LeadsAPI_REST/api/PROGRAM_TYPES',
+    headers: {
+      'Content-Type': 'application/json',
+      charset: 'utf-8',
+    },
+  })
+    .pipe(source('LU-Programs.json'))
+    .pipe(
+      streamify(
+        jeditor((programs) =>
+          programs.map((program) => ({
+            DegreeLevel: program.DegreeLevel,
+            ProgramCode: program.ProgramCode,
+            ProgramDisplay: program.ProgramDisplay,
+            Campus: program.Campus,
+            isDeleted: program.isDeleted,
+          })),
+        ),
+      ),
+    )
+    .pipe(gulp.dest('./src/LibertyUniversity/'));
 }
