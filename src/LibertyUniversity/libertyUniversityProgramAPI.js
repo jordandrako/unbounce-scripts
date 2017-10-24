@@ -37,6 +37,7 @@ if (!Array.prototype.includes) {
 /* eslint-enable */
 
 $(() => {
+  // Programs that aren't eligible for the scholarship
   const unqualifiedPrograms = [
     'UNDE-BS-D',
     'ACCT-AA-D',
@@ -87,14 +88,21 @@ $(() => {
     'ESHP-MS-D',
   ];
 
+  // Whether or not we've hit the graduate level lead cap
+  const graduateCapMet = false;
+
+  // The degree levels eligible for the scholarship
   const qualifiedDegreeLevels = [
     'Associate',
     'Bachelor',
-    // 'Master',
-    // 'Doctorate',
+    // Only include graduate level if cap not reached
+    !graduateCapMet && 'Master',
+    !graduateCapMet && 'Doctorate',
   ];
+
   const endpoint =
     'https://s3-us-west-2.amazonaws.com/omg--all/ub-scripts/LibertyUniversity/LU-Programs.json';
+
   const programDropdown = document.querySelector('#program_of_interest');
 
   let programGroup;
@@ -129,28 +137,57 @@ $(() => {
   $.getJSON(endpoint, (programs) => {
     // Sort programs by description alphabetically
     programs.sort(sortBy('ProgramDisplay', false, (a) => a.toUpperCase()));
+
     // Sort into groups
     qualifiedDegreeLevels.forEach((level) => {
-      programGroup = document.createElement('optgroup');
-      programGroup.label = level;
-      programGroup.id = `${level}Group`;
-      programGroup.text = level;
-      programs.forEach((program) => {
-        if (
-          program.isDeleted === false &&
-          program.Campus === 'D' &&
-          program.DegreeLevel === level &&
-          unqualifiedPrograms.includes(program.ProgramCode) === false
-        ) {
-          programOption = document.createElement('option');
-          programOption.value = program.ProgramCode;
-          programOption.text = program.ProgramDisplay;
-          programGroup.appendChild(programOption);
-        }
-      });
-      programDropdown.appendChild(programGroup);
+      // Only create option groups if graduate level if cap not reached
+      if (level !== false) {
+        programGroup = document.createElement('optgroup');
+        programGroup.label = level;
+        programGroup.id = `${level}Group`;
+        programGroup.text = level;
+        programs.forEach((program) => {
+          if (
+            program.isDeleted === false &&
+            program.Campus === 'D' &&
+            program.DegreeLevel === level &&
+            unqualifiedPrograms.includes(program.ProgramCode) === false
+          ) {
+            // Set data attribute for degree level
+            programOption = document.createElement('option');
+            programOption.value = program.ProgramCode;
+            programOption.text = program.ProgramDisplay;
+            programOption.dataset.degreelevel = level;
+            programGroup.appendChild(programOption);
+          }
+        });
+        programDropdown.appendChild(programGroup);
+      }
     });
+    // On change set degreeLevel field
+    const input = document.createElement('input');
+    input.id = 'degree_interest';
+    input.name = 'degree_interest';
+    input.hidden = true;
+    input.type = 'hidden';
+    input.className = 'hidden';
+    input.value = programDropdown.dataset;
+    const degreeLevelInput = document.querySelector('#degree_interest');
+    function programChanged() {
+      const degreelevel = programDropdown
+        .querySelector(':checked')
+        .getAttribute('data-degreelevel');
+      input.value = degreelevel;
+      if (!degreeLevelInput) {
+        document.querySelector('.lp-pom-form form').appendChild(input);
+      } else {
+        degreeLevelInput.value = degreelevel;
+      }
+    }
+    programDropdown.addEventListener('change', programChanged);
+    setInterval(programChanged, 1000);
   });
+
   // Set time to contact options
   const timeToContactOptions = {
     '8AM - 12PM': '1',
@@ -158,6 +195,7 @@ $(() => {
     '5PM - 9PM': '3',
   };
 
+  // TODO: Use es6 instead of jQuery for this dropdown
   // Append the options
   if ($('#time_to_contact').length) {
     $.each(timeToContactOptions, (time, optionValue) => {
