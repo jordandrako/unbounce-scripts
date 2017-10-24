@@ -2,12 +2,11 @@ $(() => {
   let hours;
   let minutes;
   let seconds;
-  let call;
+  let urgent;
   let text;
   const deadline = new Date('January 22, 2018 23:59:59');
 
   const countDownText = '.countdown-text';
-  const dayText = '.countdown-days';
 
   function setCountdown() {
     const today = new Date();
@@ -34,23 +33,21 @@ $(() => {
     } else {
       seconds = remainingTime.seconds;
     }
-    if (today < deadline) {
-      $(dayText).text(` ${days} `);
-    } else {
-      $(countDownText).empty();
+
+
+    if (today < deadline && days <= 90) {
+      urgent = days < 60 ? `<span class="large">Don't wait!</span>&nbsp;` : '';
+      if (days === 1) {
+        text = `${urgent}Classes start in <strong>${days} Day.</strong>`;
+      } else if (days === 0) {
+        text = `Classes start today! <strong>${hours}:${minutes}:${seconds}</strong>`;
+      } else {
+        text = `${urgent}Classes start in <strong>${days} Days.</strong>`;
+      }
+      $('.countdown-text').html(text);
+      return;
     }
-    // if (days < 60) {
-    call = days < 60 ? '<span class="large">Don\'t wait!&nbsp;</span>&nbsp' : '';
-    // }
-    if (days === 1) {
-      text = `${call}Classes start in <strong>${days} Days.</strong>`;
-    } else if (days === 0) {
-      text = `Classes start today! <strong>${hours}:${minutes}:${seconds}</strong>`;
-    } else {
-      text = `${call}Classes start in <strong>${days} Days.</strong>`;
-    }
-    $('.countdown-text').html(text);
-    return text;
+    $(countDownText).empty();
   }
   setCountdown();
   setInterval(setCountdown, 1000);
