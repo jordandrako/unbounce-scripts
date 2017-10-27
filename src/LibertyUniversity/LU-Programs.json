@@ -1195,7 +1195,7 @@
 }, {
   "DegreeLevel": "Associate",
   "ProgramCode": "AVMT-AA-R",
-  "ProgramDisplay": "AA: Aviation Maintenance Technician",
+  "ProgramDisplay": "AA: Aviation Maintenance: Technician",
   "Campus": "R",
   "isDeleted": false
 }, {
@@ -1633,7 +1633,7 @@
 }, {
   "DegreeLevel": "Bachelor",
   "ProgramCode": "MATA-BS-R",
-  "ProgramDisplay": "BS: Mathematics Actuarial",
+  "ProgramDisplay": "BS: Mathematics: Actuarial",
   "Campus": "R",
   "isDeleted": false
 }, {
@@ -4358,6 +4358,36 @@
   "DegreeLevel": "Doctorate",
   "ProgramCode": "DMCR-DMN-D",
   "ProgramDisplay": "DMN: Church Revitalization",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Bachelor",
+  "ProgramCode": "FIRE-BS-D",
+  "ProgramDisplay": "BS: Fire Administration",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Bachelor",
+  "ProgramCode": "PBLA-BS-D",
+  "ProgramDisplay": "BS: Public Administration",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "MALP-MA-D",
+  "ProgramDisplay": "MA: Public Policy: Leadership",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "MAPT-MA-D",
+  "ProgramDisplay": "MA: Public Policy: Policy Studies",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "MPDM-MPA-D",
+  "ProgramDisplay": "MPA: Disaster Management",
   "Campus": "D",
   "isDeleted": false
 }]
