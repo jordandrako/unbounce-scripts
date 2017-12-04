@@ -3227,12 +3227,6 @@
   "Campus": "R",
   "isDeleted": false
 }, {
-  "DegreeLevel": "Master",
-  "ProgramCode": "PCFS-MA-D",
-  "ProgramDisplay": "MA: Pastoral Counseling: Marriage and Family Studies",
-  "Campus": "D",
-  "isDeleted": false
-}, {
   "DegreeLevel": "Bachelor",
   "ProgramCode": "MUCS-BM-R",
   "ProgramDisplay": "BM: Commercial Music: Songwriting",
@@ -3248,18 +3242,6 @@
   "DegreeLevel": "Certificate",
   "ProgramCode": "CTHM-CTG-D",
   "ProgramDisplay": "CTG: Healthcare Management",
-  "Campus": "D",
-  "isDeleted": false
-}, {
-  "DegreeLevel": "Master",
-  "ProgramCode": "PCPA-MA-D",
-  "ProgramDisplay": "MA: Pastoral Counseling: Parent and Child/Adolescent",
-  "Campus": "D",
-  "isDeleted": false
-}, {
-  "DegreeLevel": "Master",
-  "ProgramCode": "HCFP-MA-D",
-  "ProgramDisplay": "MA: Human Services Counseling: Family Advocacy, Public Policy, and the Future",
   "Campus": "D",
   "isDeleted": false
 }, {
@@ -4388,6 +4370,36 @@
   "DegreeLevel": "Master",
   "ProgramCode": "MPDM-MPA-D",
   "ProgramDisplay": "MPA: Disaster Management",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Bachelor",
+  "ProgramCode": "BIOT-BS-R",
+  "ProgramDisplay": "BS: Biotechnology",
+  "Campus": "R",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Bachelor",
+  "ProgramCode": "EXTS-BS-R",
+  "ProgramDisplay": "BS: Exercise Science: Therapeutic Science",
+  "Campus": "R",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "HCDF-MA-D",
+  "ProgramDisplay": "MA: Human Services Counseling: Dobson Center Family Advocacy, Public Policy, and the Future",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "PCDM-MA-D",
+  "ProgramDisplay": "MA: Pastoral Counseling: Dobson Center Marriage and Family Studies",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "PCDP-MA-D",
+  "ProgramDisplay": "MA: Pastoral Counseling: Dobson Center Parent and Child/Adolescent",
   "Campus": "D",
   "isDeleted": false
 }]
