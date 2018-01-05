@@ -106,7 +106,7 @@ $(document).ready(() => {
     ];
 
     const endpoint =
-      "https://s3-us-west-2.amazonaws.com/omg--all/ub-scripts/LibertyUniversity/LU-Programs.json";
+      "https://raw.githubusercontent.com/jordandrako/unbounce-scripts/master/src/LibertyUniversity/LU-Programs.json";
 
     const programDropdown = document.querySelector("#program_of_interest");
 
@@ -170,27 +170,37 @@ $(document).ready(() => {
         }
       });
       // On change set degreeLevel field
-      // const input = document.createElement("input");
-      // input.id = "degree_interest";
-      // input.name = "degree_interest";
-      // input.hidden = true;
-      // input.type = "hidden";
-      // input.className = "hidden";
-      // input.value = programDropdown.dataset;
-      // const degreeLevelInput = document.querySelector("#degree_interest");
-      // function programChanged() {
-      //   const degreelevel = programDropdown
-      //     .querySelector(":checked")
-      //     .getAttribute("data-degreelevel");
-      //   input.value = degreelevel;
-      //   if (!degreeLevelInput) {
-      //     document.querySelector(".lp-pom-form form").appendChild(input);
-      //   } else {
-      //     degreeLevelInput.value = degreelevel;
-      //   }
-      // }
-      // programDropdown.addEventListener("change", programChanged);
-      // setInterval(programChanged, 1000);
+      const input = document.createElement("input");
+      input.id = "degree_interest";
+      input.name = "degree_interest";
+      input.hidden = true;
+      input.type = "hidden";
+      input.className = "hidden";
+      input.value = programDropdown.dataset;
+      const degreeLevelInput = document.querySelector("#degree_interest");
+      function programChanged() {
+        const degreelevel = programDropdown
+          .querySelector(":checked")
+          .getAttribute("data-degreelevel");
+        if (degreelevel === "Associate") {
+          input.value = "Associate's";
+        } else if (degreelevel === "Bachelor") {
+          input.value = "Bachelor's";
+        } else if (degreelevel === "Master") {
+          input.value = "Master's";
+        } else if (degreelevel === "Doctorate") {
+          input.value = "Doctorate";
+        } else {
+          input.value = degreelevel;
+        }
+        if (!degreeLevelInput) {
+          document.querySelector(".lp-pom-form form").appendChild(input);
+        } else {
+          degreeLevelInput.value = degreelevel;
+        }
+      }
+      programDropdown.addEventListener("change", programChanged);
+      setInterval(programChanged, 1000);
     });
 
     // Set time to contact options

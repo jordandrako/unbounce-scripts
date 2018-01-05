@@ -2196,6 +2196,12 @@
   "isDeleted": false
 }, {
   "DegreeLevel": "Bachelor",
+  "ProgramCode": "CJSI-BS-R",
+  "ProgramDisplay": "BS: Criminal Justice: Strategic Intelligence",
+  "Campus": "R",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Bachelor",
   "ProgramCode": "CJPA-BS-R",
   "ProgramDisplay": "BS: Criminal Justice: Public Administration",
   "Campus": "R",
