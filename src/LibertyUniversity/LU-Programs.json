@@ -4408,4 +4408,40 @@
   "ProgramDisplay": "MA: Pastoral Counseling: Dobson Center Parent and Child/Adolescent",
   "Campus": "D",
   "isDeleted": false
+}, {
+  "DegreeLevel": "Doctorate",
+  "ProgramCode": "EDHE-EDS-D",
+  "ProgramDisplay": "EDS: Higher Education Administration",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "HCDM-MA-D",
+  "ProgramDisplay": "MA: Human Services Counseling: Dobson Center Marriage and Family Studies",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "HCDP-MA-D",
+  "ProgramDisplay": "MA: Human Services Counseling: Dobson Center Parenting and Child/ Adolescent",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "MBEX-MA-D",
+  "ProgramDisplay": "MA: Biblical Exposition",
+  "Campus": "D",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "MBEX-MA-R",
+  "ProgramDisplay": "MA: Biblical Exposition",
+  "Campus": "R",
+  "isDeleted": false
+}, {
+  "DegreeLevel": "Master",
+  "ProgramCode": "PCDF-MA-D",
+  "ProgramDisplay": "MA: Pastoral Counseling: Dobson Center Family Advocacy, Public Policy, and the Future",
+  "Campus": "D",
+  "isDeleted": false
 }]
